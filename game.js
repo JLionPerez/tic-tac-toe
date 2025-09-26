@@ -1,26 +1,3 @@
-function createBoard () {
-    let board = [
-        ["","",""],
-        ["","",""],
-        ["","",""]
-    ]
-    return { board }
-}
-
-function createPlayer (mark) {
-    return { mark }
-}
-
-const gameboard = createBoard()
-const player1 = createPlayer("X")
-const player2 = createPlayer("O")
-
-// console.log({
-//         board: gameboard.board,
-//         player1: player1.mark,
-//         player2: player2.mark
-//     })
-
 // when players turn
 
 // put mark on given index
@@ -34,5 +11,29 @@ const player2 = createPlayer("O")
 // all wrapped in IIFE
 
 const Game = (function () {
-    console.log("Hi, I'm the game")
+    let board = [
+        ['','',''],
+        ['','',''],
+        ['','','']
+    ]
+
+    function createPlayer (name, mark) {
+        return {
+            name: name,
+            mark: mark
+        }
+    }
+
+    const player1 = createPlayer("Joe","X")
+    const player2 = createPlayer("Izin","O")
+
+    console.log(player1)
+    console.log(player2)
+
+    const Gameboard = (function () {
+        board[0][0] = player1.mark
+        
+        console.log(board)
+    })();
+
 })();
