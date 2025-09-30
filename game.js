@@ -30,10 +30,19 @@ const Game = (function () {
     console.log(player1)
     console.log(player2)
 
+    const updateBoard = (row, col, mark) => {
+        if (board[row][col] === ''){
+            board[row][col] = mark
+        } else {
+            console.log("You cannot mark this cell.")
+        }
+    }
+
     const Gameboard = (function () {
-        board[0][0] = player1.mark
-        
-        console.log(board)
+        console.log(board) //return updated board
     })();
+
+    updateBoard(0, 0, player1.mark)
+    updateBoard(0, 1, player2.mark)
 
 })();
