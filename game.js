@@ -27,8 +27,12 @@ const Game = (function () {
     const player1 = createPlayer("Joe","X")
     const player2 = createPlayer("Izin","O")
 
-    console.log(player1)
-    console.log(player2)
+    // console.log(player1)
+    // console.log(player2)
+
+    const Gameboard = (function () {
+        console.log(board) //return updated board
+    })();
 
     const updateBoard = (row, col, mark) => {
         if (board[row][col] === ''){
@@ -38,11 +42,23 @@ const Game = (function () {
         }
     }
 
-    const Gameboard = (function () {
-        console.log(board) //return updated board
-    })();
+    const resetBoard = () => {
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board.length; j++) {
+                board[i][j] = ''
+            }
+        }
+    }
 
-    updateBoard(0, 0, player1.mark)
-    updateBoard(0, 1, player2.mark)
+    // updateBoard(0, 0, player1.mark)
+    // updateBoard(0, 1, player2.mark)
 
+    // resetBoard()
+
+    // win or tie?
+    // if (board === )
+
+    let p1row = prompt("What row will Player 1 pick?")
+    let p1col = prompt("What will column will Player 1 pick?")
+    updateBoard(p1row, p1col, player1.mark)
 })();
