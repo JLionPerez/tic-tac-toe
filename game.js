@@ -17,6 +17,8 @@ const Game = (function () {
         ['','','']
     ]
 
+    let gameOver = 0;
+
     function createPlayer (mark) {
         return {
             mark: mark
@@ -46,7 +48,7 @@ const Game = (function () {
         }
     }
 
-    const winCheck = () => {
+    const winCheck = (function () {
         if ((board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') ||
             (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') ||
             (board[2][0] === 'X' && board[2][1] === 'X' && board[2][2] === 'X') ||
@@ -56,6 +58,7 @@ const Game = (function () {
             (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
             (board[0][2] === 'X' && board[1][1] === 'X' && board[2][0] === 'X')) {
             console.log("Player 1 wins!")
+            gameOver = 1;
             return 1;
         }
 
@@ -68,6 +71,7 @@ const Game = (function () {
             (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
             (board[0][2] === 'O' && board[1][1] === 'O' && board[2][0] === 'O')) {
             console.log("Player 2 wins!")
+            gameOver = 2;
             return 2;
         }
 
@@ -82,14 +86,20 @@ const Game = (function () {
             }
             if (fillCount === 9) {
                 console.log("It's a draw!")
+                gameOver = 3;
                 return 3;
             }
         }
+    })();
+
+    while(gameOver === 0) {
+        const p1Input = prompt("P1 Where do you want to mark?");
+        const p1Vals = p1Input.split(",")
+        updateBoard(p1Vals[0], p1Vals[1], player1.mark)
+
+        const p2Input = prompt("P2 Where do you want to mark?");
+        const p2Vals = p2Input.split(",")
+        updateBoard(p2Vals[0], p2Vals[1], player2.mark)
     }
 
-    winCheck()
-
-    // let p1row = prompt("What row will Player 1 pick?")
-    // let p1col = prompt("What will column will Player 1 pick?")
-    // updateBoard(p1row, p1col, player1.mark)
 })();
