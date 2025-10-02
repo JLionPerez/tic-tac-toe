@@ -17,18 +17,14 @@ const Game = (function () {
         ['','','']
     ]
 
-    function createPlayer (name, mark) {
+    function createPlayer (mark) {
         return {
-            name: name,
             mark: mark
         }
     }
 
-    const player1 = createPlayer("Joe","X")
-    const player2 = createPlayer("Izin","O")
-
-    // console.log(player1)
-    // console.log(player2)
+    const player1 = createPlayer("X")
+    const player2 = createPlayer("O")
 
     const Gameboard = (function () {
         console.log(board) //return updated board
@@ -50,15 +46,50 @@ const Game = (function () {
         }
     }
 
-    // updateBoard(0, 0, player1.mark)
-    // updateBoard(0, 1, player2.mark)
+    const winCheck = () => {
+        if ((board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') ||
+            (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') ||
+            (board[2][0] === 'X' && board[2][1] === 'X' && board[2][2] === 'X') ||
+            (board[0][0] === 'X' && board[1][0] === 'X' && board[2][0] === 'X') ||
+            (board[0][1] === 'X' && board[1][1] === 'X' && board[2][1] === 'X') ||
+            (board[0][2] === 'X' && board[1][2] === 'X' && board[2][2] === 'X') ||
+            (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
+            (board[0][2] === 'X' && board[1][1] === 'X' && board[2][0] === 'X')) {
+            console.log("Player 1 wins!")
+            return 1;
+        }
 
-    // resetBoard()
+        else if ((board[0][0] === 'O' && board[0][1] === 'O' && board[0][2] === 'O') ||
+            (board[1][0] === 'O' && board[1][1] === 'O' && board[1][2] === 'O') ||
+            (board[2][0] === 'O' && board[2][1] === 'O' && board[2][2] === 'O') ||
+            (board[0][0] === 'O' && board[1][0] === 'O' && board[2][0] === 'O') ||
+            (board[0][1] === 'O' && board[1][1] === 'O' && board[2][1] === 'O') ||
+            (board[0][2] === 'O' && board[1][2] === 'O' && board[2][2] === 'O') ||
+            (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
+            (board[0][2] === 'O' && board[1][1] === 'O' && board[2][0] === 'O')) {
+            console.log("Player 2 wins!")
+            return 2;
+        }
 
-    // win or tie?
-    // if (board === )
+        else {
+            let fillCount = 0;
+            for (let i = 0; i < board.length; i++) {
+                for (let j = 0; j < board.length; j++) {
+                    if (board[i][j] != '') {
+                        fillCount++
+                    }
+                }
+            }
+            if (fillCount === 9) {
+                console.log("It's a draw!")
+                return 3;
+            }
+        }
+    }
 
-    let p1row = prompt("What row will Player 1 pick?")
-    let p1col = prompt("What will column will Player 1 pick?")
-    updateBoard(p1row, p1col, player1.mark)
+    winCheck()
+
+    // let p1row = prompt("What row will Player 1 pick?")
+    // let p1col = prompt("What will column will Player 1 pick?")
+    // updateBoard(p1row, p1col, player1.mark)
 })();
