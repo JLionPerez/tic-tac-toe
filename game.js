@@ -23,12 +23,17 @@ const Game = (function () {
         }
     }
 
-    const getCellVal = (row, col) => {
-        return board[row][col]
-    }
+    // const getCellVal = (row, col) => {
+    //     return board[row][col]
+    // }
 
     const setCellVal = (row,col,mark) => {
-        board[row][col] = mark;
+        if (board[row][col] === '') {
+            board[row][col] = mark;
+        }
+        else {
+            console.log("You can't put a mark there.")
+        }
     }
 
     const player1 = createPlayer("X")
@@ -100,14 +105,51 @@ const Game = (function () {
                 return 3;
             }
         }
+        return 0;
     }
 
-    winCheck()
+    // winCheck()
 
     //while gameboard is not filled
-    //player 1 clicks on cell to mark
-    //check for wins or ties
-    //player 2 clicks on cell to mark
-    //check for wins or ties
-    //if either player wins or game ends on tie break out of loop; gameover
+    while() {
+        let i = 0;
+        //player 1 clicks on cell to mark
+        let p1r = prompt("P1 what row?")
+        let p1c = prompt("P1 what col?")
+        setCellVal(p1r, p1c, player1.mark)
+        // console.log(board)
+        //check for wins or ties
+        // winCheck()
+        //player 2 clicks on cell to mark
+        let p2r = prompt("P2 what row?")
+        let p2c = prompt("P2 what col?")
+        setCellVal(p2r, p2c, player2.mark)
+        // console.log(board)
+        //check for wins or ties
+        // winCheck()
+        //if either player wins or game ends on tie break out of loop; gameover
+        // console.log(board)
+        // return 0;
+        i++
+        console.log(i)
+    }
+
+    // const GameFlow = (function () {
+    //     //player 1 clicks on cell to mark
+    //     let p1r = prompt("P1 what row?")
+    //     let p1c = prompt("P1 what col?")
+    //     setCellVal(p1r, p1c, player1.mark)
+    //     // console.log(board)
+    //     //check for wins or ties
+    //     winCheck()
+    //     //player 2 clicks on cell to mark
+    //     let p2r = prompt("P2 what row?")
+    //     let p2c = prompt("P2 what col?")
+    //     setCellVal(p2r, p2c, player2.mark)
+    //     // console.log(board)
+    //     //check for wins or ties
+    //     winCheck()
+    //     //if either player wins or game ends on tie break out of loop; gameover
+    // })();
+    return 0;
 })();
