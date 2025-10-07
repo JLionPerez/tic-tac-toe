@@ -23,6 +23,14 @@ const Game = (function () {
         }
     }
 
+    const getCellVal = (row, col) => {
+        return board[row][col]
+    }
+
+    const setCellVal = (row,col,mark) => {
+        board[row][col] = mark;
+    }
+
     const player1 = createPlayer("X")
     const player2 = createPlayer("O")
 
