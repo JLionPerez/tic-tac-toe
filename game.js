@@ -12,27 +12,14 @@
 
 const Game = (function () {
     let board = [
-        ['','',''],
-        ['','',''],
-        ['','','']
+        '','','',
+        '','','',
+        '','',''
     ]
 
     function createPlayer (mark) {
         return {
             mark: mark
-        }
-    }
-
-    // const getCellVal = (row, col) => {
-    //     return board[row][col]
-    // }
-
-    const setCellVal = (row,col,mark) => {
-        if (board[row][col] === '') {
-            board[row][col] = mark;
-        }
-        else {
-            console.log("You can't put a mark there.")
         }
     }
 
@@ -43,9 +30,9 @@ const Game = (function () {
         console.log(board) //return updated board
     })();
 
-    const updateBoard = (row, col, mark) => {
-        if (board[row][col] === ''){
-            board[row][col] = mark
+    const updateBoard = (index, mark) => {
+        if (board[index] === ''){
+            board[index] = mark
         } else {
             console.log("You cannot mark this cell.")
         }
@@ -53,19 +40,15 @@ const Game = (function () {
 
     const resetBoard = () => {
         for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board.length; j++) {
-                board[i][j] = ''
-            }
+                board[i] = ''
         }
     }
 
     const isBoardFilled = () => {
         let fillCount = 0;
             for (let i = 0; i < board.length; i++) {
-                for (let j = 0; j < board.length; j++) {
-                    if (board[i][j] != '') {
-                        fillCount++
-                    }
+                if (board[i] != '') {
+                    fillCount++
                 }
             }
             if (fillCount === 9) {
@@ -75,26 +58,26 @@ const Game = (function () {
     }
 
     const winCheck = () => {
-        if ((board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') ||
-            (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') ||
-            (board[2][0] === 'X' && board[2][1] === 'X' && board[2][2] === 'X') ||
-            (board[0][0] === 'X' && board[1][0] === 'X' && board[2][0] === 'X') ||
-            (board[0][1] === 'X' && board[1][1] === 'X' && board[2][1] === 'X') ||
-            (board[0][2] === 'X' && board[1][2] === 'X' && board[2][2] === 'X') ||
-            (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
-            (board[0][2] === 'X' && board[1][1] === 'X' && board[2][0] === 'X')) {
+        if ((board[0] === 'X' && board[1] === 'X' && board[2] === 'X') ||
+            (board[3] === 'X' && board[4] === 'X' && board[5] === 'X') ||
+            (board[6] === 'X' && board[7] === 'X' && board[8] === 'X') ||
+            (board[0] === 'X' && board[3] === 'X' && board[6] === 'X') ||
+            (board[1] === 'X' && board[4] === 'X' && board[7] === 'X') ||
+            (board[2] === 'X' && board[5] === 'X' && board[8] === 'X') ||
+            (board[0] === 'X' && board[4] === 'X' && board[8] === 'X') ||
+            (board[2] === 'X' && board[4] === 'X' && board[6] === 'X')) {
             console.log("Player 1 wins!")
             return 1;
         }
 
-        else if ((board[0][0] === 'O' && board[0][1] === 'O' && board[0][2] === 'O') ||
-            (board[1][0] === 'O' && board[1][1] === 'O' && board[1][2] === 'O') ||
-            (board[2][0] === 'O' && board[2][1] === 'O' && board[2][2] === 'O') ||
-            (board[0][0] === 'O' && board[1][0] === 'O' && board[2][0] === 'O') ||
-            (board[0][1] === 'O' && board[1][1] === 'O' && board[2][1] === 'O') ||
-            (board[0][2] === 'O' && board[1][2] === 'O' && board[2][2] === 'O') ||
-            (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
-            (board[0][2] === 'O' && board[1][1] === 'O' && board[2][0] === 'O')) {
+        else if ((board[0] === 'O' && board[1] === 'O' && board[2] === 'O') ||
+            (board[3] === 'O' && board[4] === 'O' && board[5] === 'O') ||
+            (board[6] === 'O' && board[7] === 'O' && board[8] === 'O') ||
+            (board[0] === 'O' && board[3] === 'O' && board[6] === 'O') ||
+            (board[1] === 'O' && board[4] === 'O' && board[7] === 'O') ||
+            (board[2] === 'O' && board[5] === 'O' && board[8] === 'O') ||
+            (board[0] === 'O' && board[4] === 'O' && board[8] === 'O') ||
+            (board[2] === 'O' && board[4] === 'O' && board[6] === 'O')) {
             console.log("Player 2 wins!")
             return 2;
         }
@@ -111,28 +94,25 @@ const Game = (function () {
     // winCheck()
 
     //while gameboard is not filled
-    while() {
-        let i = 0;
+        // let i = 0;
         //player 1 clicks on cell to mark
-        let p1r = prompt("P1 what row?")
-        let p1c = prompt("P1 what col?")
-        setCellVal(p1r, p1c, player1.mark)
+        let p1Index = prompt("P1 what cell?")
+        updateBoard(p1Index, player1.mark)
         // console.log(board)
         //check for wins or ties
         // winCheck()
         //player 2 clicks on cell to mark
-        let p2r = prompt("P2 what row?")
-        let p2c = prompt("P2 what col?")
-        setCellVal(p2r, p2c, player2.mark)
+        let p2Index = prompt("P2 what cell?")
+        updateBoard(p2Index, player2.mark)
         // console.log(board)
         //check for wins or ties
         // winCheck()
         //if either player wins or game ends on tie break out of loop; gameover
         // console.log(board)
         // return 0;
-        i++
-        console.log(i)
-    }
+        // i++
+        // console.log(i)
+    
 
     // const GameFlow = (function () {
     //     //player 1 clicks on cell to mark
