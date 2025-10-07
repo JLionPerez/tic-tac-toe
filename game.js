@@ -46,6 +46,21 @@ const Game = (function () {
         }
     }
 
+    const isBoardFilled = () => {
+        let fillCount = 0;
+            for (let i = 0; i < board.length; i++) {
+                for (let j = 0; j < board.length; j++) {
+                    if (board[i][j] != '') {
+                        fillCount++
+                    }
+                }
+            }
+            if (fillCount === 9) {
+                return true
+            }
+            return false;
+    }
+
     const winCheck = () => {
         if ((board[0][0] === 'X' && board[0][1] === 'X' && board[0][2] === 'X') ||
             (board[1][0] === 'X' && board[1][1] === 'X' && board[1][2] === 'X') ||
@@ -72,15 +87,7 @@ const Game = (function () {
         }
 
         else {
-            let fillCount = 0;
-            for (let i = 0; i < board.length; i++) {
-                for (let j = 0; j < board.length; j++) {
-                    if (board[i][j] != '') {
-                        fillCount++
-                    }
-                }
-            }
-            if (fillCount === 9) {
+            if (isBoardFilled()) {
                 console.log("It's a draw!")
                 return 3;
             }
@@ -89,7 +96,10 @@ const Game = (function () {
 
     winCheck()
 
-    // let p1row = prompt("What row will Player 1 pick?")
-    // let p1col = prompt("What will column will Player 1 pick?")
-    // updateBoard(p1row, p1col, player1.mark)
+    //while gameboard is not filled
+    //player 1 clicks on cell to mark
+    //check for wins or ties
+    //player 2 clicks on cell to mark
+    //check for wins or ties
+    //if either player wins or game ends on tie break out of loop; gameover
 })();
