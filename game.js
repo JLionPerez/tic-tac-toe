@@ -17,14 +17,15 @@ const Game = (function () {
         '','',''
     ]
 
-    function createPlayer (mark) {
+    function createPlayer (name,mark) {
         return {
+            name: name,
             mark: mark
         }
     }
 
-    const player1 = createPlayer("X")
-    const player2 = createPlayer("O")
+    const player1 = createPlayer("Player 1","X")
+    const player2 = createPlayer("Player 2","O")
 
     const Gameboard = (function () {
         console.log(board) //return updated board
@@ -66,7 +67,7 @@ const Game = (function () {
             (board[2] === 'X' && board[5] === 'X' && board[8] === 'X') ||
             (board[0] === 'X' && board[4] === 'X' && board[8] === 'X') ||
             (board[2] === 'X' && board[4] === 'X' && board[6] === 'X')) {
-            console.log("Player 1 wins!")
+            // console.log("Player 1 wins!")
             return 1;
         }
 
@@ -78,40 +79,56 @@ const Game = (function () {
             (board[2] === 'O' && board[5] === 'O' && board[8] === 'O') ||
             (board[0] === 'O' && board[4] === 'O' && board[8] === 'O') ||
             (board[2] === 'O' && board[4] === 'O' && board[6] === 'O')) {
-            console.log("Player 2 wins!")
+            // console.log("Player 2 wins!")
             return 2;
         }
 
-        else {
-            if (isBoardFilled()) {
-                console.log("It's a draw!")
+        else if (isBoardFilled()) {
+                // console.log("It's a draw!")
                 return 3;
-            }
         }
         return 0;
     }
 
+    const contGameFlag = () => {
+        if (winCheck() === 1) {
+            console.log("Player 1 wins!")
+            return false;
+        }
+        
+        else if (winCheck() === 2) {
+            console.log("Player 2 wins!")
+            return false;
+        }
+
+        else if (winCheck() === 3) {
+            console.log("It's a draw.")
+            return false;
+        }
+        return true;
+    }
+
     // winCheck()
 
-    //while gameboard is not filled
-        // let i = 0;
-        //player 1 clicks on cell to mark
-        let p1Index = prompt("P1 what cell?")
-        updateBoard(p1Index, player1.mark)
-        // console.log(board)
-        //check for wins or ties
-        // winCheck()
-        //player 2 clicks on cell to mark
-        let p2Index = prompt("P2 what cell?")
-        updateBoard(p2Index, player2.mark)
-        // console.log(board)
-        //check for wins or ties
-        // winCheck()
-        //if either player wins or game ends on tie break out of loop; gameover
-        // console.log(board)
-        // return 0;
-        // i++
-        // console.log(i)
+    // //while gameboard is not filled
+    //     // let i = 0;
+    //     //player 1 clicks on cell to mark
+    //     let p1Index = prompt("P1 what cell?")
+    //     updateBoard(p1Index, player1.mark)
+    //     // console.log(board)
+    //     //check for wins or ties
+    //     // winCheck()
+    //     //player 2 clicks on cell to mark
+    //     let p2Index = prompt("P2 what cell?")
+    //     updateBoard(p2Index, player2.mark)
+    //     // console.log(board)
+    //     //check for wins or ties
+    //     // winCheck()
+    //     //if either player wins or game ends on tie break out of loop; gameover
+    //     // console.log(board)
+    //     // return 0;
+    //     // i++
+    //     // console.log(i)
     
 
     // const GameFlow = (function () {
@@ -131,5 +148,57 @@ const Game = (function () {
     //     winCheck()
     //     //if either player wins or game ends on tie break out of loop; gameover
     // })();
+
+    let contGame = true;
+    while(contGame) {
+        let p1Idx;
+        let p2Idx;
+
+        p1Idx = prompt("P1 what cell?")
+        updateBoard(p1Idx, player1.mark)
+
+        if (winCheck() === 1) {
+            console.log("Player 1 wins!")
+            contGame = false;
+            // return 0;
+        }
+        
+        else if (winCheck() === 2) {
+            console.log("Player 2 wins!")
+            contGame = false;
+            // return 0;
+        }
+
+        else if (winCheck() === 3) {
+            console.log("It's a draw.")
+            contGame = false;
+            // return 0;
+        }
+
+        // contGame = contGameFlag()
+
+        p2Idx = prompt("P2 what cell?")
+        updateBoard(p2Idx, player2.mark)
+
+        // contGame = contGameFlag()
+
+        if (winCheck() === 1) {
+            console.log("Player 1 wins!")
+            contGame = false;
+            // return 0;
+        }
+        
+        else if (winCheck() === 2) {
+            console.log("Player 2 wins!")
+            contGame = false;
+            // return 0;
+        }
+
+        else if (winCheck() === 3) {
+            console.log("It's a draw.")
+            contGame = false;
+            // return 0;
+        }
+    }
     return 0;
 })();
