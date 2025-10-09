@@ -20,11 +20,7 @@ const Game = (function () {
     })();
 
     const updateBoard = (index, mark) => { // might move validation to player prompt
-        if (board[index] === ''){
-            board[index] = mark
-        } else {
-            console.log("You cannot mark this cell.")
-        }
+        board[index] = mark
     }
 
     const resetBoard = () => {
@@ -99,11 +95,9 @@ const Game = (function () {
         let p2Idx;
 
         let askP1Again = true;
-        // p1Idx = prompt("P1 what cell?")
         do {
             p1Idx = prompt("P1 what cell?")       
             if (board[p1Idx] === '' && p1Idx <= 8){
-                // p1Idx = prompt("P1 what cell?")
                 updateBoard(p1Idx, player1.mark)
                 askP1Again = false
             } else {
@@ -114,24 +108,25 @@ const Game = (function () {
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
             contGame = false;
+            return 0;
         }
         
         else if (winCheck() === 2) {
             console.log("Player 2 wins!")
             contGame = false;
+            return 0;
         }
 
         else if (winCheck() === 3) {
             console.log("It's a draw.")
             contGame = false;
+            return 0;
         }
 
         let askP2Again = true;
-        // p2Idx = prompt("P2 what cell?")
         do {  
             p2Idx = prompt("P2 what cell?")     
             if (board[p2Idx] === '' && p2Idx <= 8){
-                // p2Idx = prompt("P2 what cell?")
                 updateBoard(p2Idx, player2.mark)
                 askP2Again = false
             } else {
@@ -142,16 +137,19 @@ const Game = (function () {
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
             contGame = false;
+            return 0;
         }
         
         else if (winCheck() === 2) {
             console.log("Player 2 wins!")
             contGame = false;
+            return 0;
         }
 
         else if (winCheck() === 3) {
             console.log("It's a draw.")
             contGame = false;
+            return 0;
         }
     }
     return 0;
