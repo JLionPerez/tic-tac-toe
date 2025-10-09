@@ -64,7 +64,8 @@ const Game = (function () {
             (board[2] === 'X' && board[5] === 'X' && board[8] === 'X') ||
             (board[0] === 'X' && board[4] === 'X' && board[8] === 'X') ||
             (board[2] === 'X' && board[4] === 'X' && board[6] === 'X')) {
-            return 1;
+            console.log("Player 1 wins!")
+            return 0;
         }
 
         else if ((board[0] === 'O' && board[1] === 'O' && board[2] === 'O') ||
@@ -75,74 +76,28 @@ const Game = (function () {
             (board[2] === 'O' && board[5] === 'O' && board[8] === 'O') ||
             (board[0] === 'O' && board[4] === 'O' && board[8] === 'O') ||
             (board[2] === 'O' && board[4] === 'O' && board[6] === 'O')) {
-            return 2;
+            console.log("Player 2 wins!")
+            return 0;
         }
 
         else if (isBoardFilled()) {
-                return 3;
+            console.log("It's a draw.")
+            return 0;
         }
-        return 0;
+        return 1;
     }
-
-    // const contGameFlag = () => {
-    //     if (winCheck() === 1) {
-    //         console.log("Player 1 wins!")
-    //         return false;
-    //     }
-        
-    //     else if (winCheck() === 2) {
-    //         console.log("Player 2 wins!")
-    //         return false;
-    //     }
-
-    //     else if (winCheck() === 3) {
-    //         console.log("It's a draw.")
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
     let contGame = true;
     while(contGame) {
         updateBoard(player1)
 
-        if (winCheck() === 1) {
-            console.log("Player 1 wins!")
-            contGame = false;
-            return 0;
-        }
-        
-        else if (winCheck() === 2) {
-            console.log("Player 2 wins!")
-            contGame = false;
-            return 0;
-        }
-
-        else if (winCheck() === 3) {
-            console.log("It's a draw.")
-            contGame = false;
-            return 0;
-        }
+        contGame = winCheck()
+        if (contGame === 0) { return 0 }
 
         updateBoard(player2)
 
-        if (winCheck() === 1) {
-            console.log("Player 1 wins!")
-            contGame = false;
-            return 0;
-        }
-        
-        else if (winCheck() === 2) {
-            console.log("Player 2 wins!")
-            contGame = false;
-            return 0;
-        }
-
-        else if (winCheck() === 3) {
-            console.log("It's a draw.")
-            contGame = false;
-            return 0;
-        }
+        contGame = winCheck()
+        if (contGame === 0) { return 0 }
     }
     return 0;
 })();
