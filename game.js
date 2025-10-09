@@ -98,8 +98,18 @@ const Game = (function () {
         let p1Idx;
         let p2Idx;
 
-        p1Idx = prompt("P1 what cell?")
-        updateBoard(p1Idx, player1.mark)
+        let askP1Again = true;
+        // p1Idx = prompt("P1 what cell?")
+        do {
+            p1Idx = prompt("P1 what cell?")       
+            if (board[p1Idx] === '' && p1Idx <= 8){
+                // p1Idx = prompt("P1 what cell?")
+                updateBoard(p1Idx, player1.mark)
+                askP1Again = false
+            } else {
+                console.log("You cannot mark this cell.")
+            }
+        } while (askP1Again)
 
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
@@ -116,8 +126,18 @@ const Game = (function () {
             contGame = false;
         }
 
-        p2Idx = prompt("P2 what cell?")
-        updateBoard(p2Idx, player2.mark)
+        let askP2Again = true;
+        // p2Idx = prompt("P2 what cell?")
+        do {  
+            p2Idx = prompt("P2 what cell?")     
+            if (board[p2Idx] === '' && p2Idx <= 8){
+                // p2Idx = prompt("P2 what cell?")
+                updateBoard(p2Idx, player2.mark)
+                askP2Again = false
+            } else {
+                console.log("You cannot mark this cell.")
+            }
+        } while (askP2Again)
 
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
