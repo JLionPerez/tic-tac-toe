@@ -19,8 +19,21 @@ const Game = (function () {
         console.log(board) //return updated board
     })();
 
-    const updateBoard = (index, mark) => { // might move validation to player prompt
-        board[index] = mark
+    const updateBoard = (obj) => { 
+        let index;
+        let name = obj.name
+        let mark = obj.mark
+
+        let askAgain = true;
+        do {
+            index = prompt(name + " what cell?")       
+            if (board[index] === '' && index >= 0 && index <= 8){
+                board[index] = mark
+                askAgain = false
+            } else {
+                console.log("You cannot mark this cell.")
+            }
+        } while (askAgain)
     }
 
     const resetBoard = () => {
@@ -71,39 +84,27 @@ const Game = (function () {
         return 0;
     }
 
-    const contGameFlag = () => {
-        if (winCheck() === 1) {
-            console.log("Player 1 wins!")
-            return false;
-        }
+    // const contGameFlag = () => {
+    //     if (winCheck() === 1) {
+    //         console.log("Player 1 wins!")
+    //         return false;
+    //     }
         
-        else if (winCheck() === 2) {
-            console.log("Player 2 wins!")
-            return false;
-        }
+    //     else if (winCheck() === 2) {
+    //         console.log("Player 2 wins!")
+    //         return false;
+    //     }
 
-        else if (winCheck() === 3) {
-            console.log("It's a draw.")
-            return false;
-        }
-        return true;
-    }
+    //     else if (winCheck() === 3) {
+    //         console.log("It's a draw.")
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     let contGame = true;
     while(contGame) {
-        let p1Idx;
-        let p2Idx;
-
-        let askP1Again = true;
-        do {
-            p1Idx = prompt("P1 what cell?")       
-            if (board[p1Idx] === '' && p1Idx <= 8){
-                updateBoard(p1Idx, player1.mark)
-                askP1Again = false
-            } else {
-                console.log("You cannot mark this cell.")
-            }
-        } while (askP1Again)
+        updateBoard(player1)
 
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
@@ -123,16 +124,7 @@ const Game = (function () {
             return 0;
         }
 
-        let askP2Again = true;
-        do {  
-            p2Idx = prompt("P2 what cell?")     
-            if (board[p2Idx] === '' && p2Idx <= 8){
-                updateBoard(p2Idx, player2.mark)
-                askP2Again = false
-            } else {
-                console.log("You cannot mark this cell.")
-            }
-        } while (askP2Again)
+        updateBoard(player2)
 
         if (winCheck() === 1) {
             console.log("Player 1 wins!")
