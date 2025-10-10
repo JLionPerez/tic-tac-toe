@@ -87,17 +87,17 @@ const Game = (function () {
         return 1;
     }
 
-    let contGame = true;
-    while(contGame) {
-        updateBoard(player1)
+    // let contGame = true;
+    // while(contGame) {
+    //     updateBoard(player1)
 
-        contGame = winCheck()
-        if (contGame === 0) { return 0 }
+    //     contGame = winCheck()
+    //     if (contGame === 0) { return 0 }
 
-        updateBoard(player2)
+    //     updateBoard(player2)
 
-        contGame = winCheck()
-        if (contGame === 0) { return 0 }
-    }
+    //     contGame = winCheck()
+    //     if (contGame === 0) { return 0 }
+    // }
     return 0;
 })();
