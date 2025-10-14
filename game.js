@@ -87,6 +87,14 @@ const Game = (function () {
         return 1;
     }
 
+    const cells = document.querySelectorAll(".cell");
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', () => {
+            console.log("Cell has been clicked")
+        })
+    }
+
+    // uncomment to run game
     // let contGame = true;
     // while(contGame) {
     //     updateBoard(player1)
