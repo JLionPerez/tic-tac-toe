@@ -5,6 +5,8 @@ const Game = (function () {
         '','',''
     ]
 
+    let mark ='1'
+
     function createPlayer (name,mark) {
         return {
             name: name,
@@ -15,6 +17,16 @@ const Game = (function () {
     const player1 = createPlayer("Player 1","X")
     const player2 = createPlayer("Player 2","O")
 
+    // const gameboard = document.getElementsByClassName(".gameboard")
+
+    const cells = document.querySelectorAll(".cell");
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', () => {
+            board[i] = mark
+            cells[i].textContent = board[i]
+        })
+    }
+
     const Gameboard = (function () {
         console.log(board) //return updated board
     })();
@@ -24,16 +36,35 @@ const Game = (function () {
         let name = obj.name
         let mark = obj.mark
 
-        let askAgain = true;
-        do {
-            index = prompt(name + " what cell?")       
-            if (board[index] === '' && index >= 0 && index <= 8){
-                board[index] = mark
-                askAgain = false
-            } else {
-                console.log("You cannot mark this cell.")
-            }
-        } while (askAgain)
+        // const cells = document.querySelectorAll(".cell");
+        //     for (let i = 0; i < cells.length; i++) {
+        //         cells[i].addEventListener('click', () => {
+        //             cells[i].textContent = mark
+        //     })
+        // }
+
+        // let askAgain = true;
+        // do {
+        //     index = prompt(name + " what cell?")       
+        //     if (board[index] === '' && index >= 0 && index <= 8){
+        //         board[index] = mark
+        //         askAgain = false
+        //     } else {
+        //         console.log("You cannot mark this cell.")
+        //     }
+        // } while (askAgain)
+
+        // let askAgain = true;
+        // do {
+        //     // index = prompt(name + " what cell?")       
+        //     if (board[index] === ''){
+        //         board[index] = mark
+        //         askAgain = false
+        //     } else {
+        //         console.log("You cannot mark this cell.")
+        //     }
+        // } while (askAgain)
+
     }
 
     const resetBoard = () => {
@@ -87,13 +118,6 @@ const Game = (function () {
         return 1;
     }
 
-    const cells = document.querySelectorAll(".cell");
-    for (let i = 0; i < cells.length; i++) {
-        cells[i].addEventListener('click', () => {
-            console.log("Cell has been clicked")
-        })
-    }
-
     // uncomment to run game
     // let contGame = true;
     // while(contGame) {
@@ -107,5 +131,5 @@ const Game = (function () {
     //     contGame = winCheck()
     //     if (contGame === 0) { return 0 }
     // }
-    return 0;
+    // return 0;
 })();

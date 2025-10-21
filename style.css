@@ -28,6 +28,7 @@ body {
 
 .cell {
     border: solid 1px #FC809F;
+    color: #FC809F;
 }
 
 .message-board {
