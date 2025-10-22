@@ -16,15 +16,16 @@ const Game = (function () {
     const player2 = createPlayer("Player 2","O")
 
     const msgBoard = document.querySelector(".message-board")
-    msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 (X) will be starting this round."
+    msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
 
     const cells = document.querySelectorAll(".cell");
 
-    let mark = player1.mark
-    let name = player1.name
+    let mark = ''
+    let name = ''
 
     for (let i = 0; i < cells.length; i++) {
         let askAgain = true;
+        let continueGame = true;
         cells[i].addEventListener('click', () => {
             // if (mark = 'O') {
             //     name = player1.name
@@ -32,15 +33,37 @@ const Game = (function () {
             //     msgBoard.textContent = name + "'s turn."
             // }
 
-            do {
-                if (board[i] === ''){
-                    board[i] = mark
-                    cells[i].textContent = board[i]
-                    askAgain = false
-                } else {
-                    msgBoard.textContent = "You cannot mark this cell."
-                }
-            } while (askAgain)
+            // do {
+            if (board[i] === '' && mark === ''){ //first turn
+                mark = player1.mark
+                name = player1.name
+                board[i] = mark
+                cells[i].textContent = board[i]
+                // askAgain = false
+            }
+
+            else if (board[i] === '' && mark === 'X') {
+                mark = player2.mark
+                msgBoard.textContent = name + "'s turn."
+                name = player2.name
+                board[i] = mark
+                cells[i].textContent = board[i]
+                // askAgain = false
+            }
+
+            else if (board[i] === '' && mark === 'O') {
+                mark = player1.mark
+                msgBoard.textContent = name + "'s turn."
+                name = player1.name
+                board[i] = mark
+                cells[i].textContent = board[i]
+                // askAgain = false
+            }
+
+            else {
+                msgBoard.textContent = "You cannot mark this cell."
+            }
+            // } while (askAgain)
             
             // if (mark = 'X') {
             //     name = player2.name
@@ -71,6 +94,10 @@ const Game = (function () {
 
         msgBoard.textContent = name + "'s turn."
 
+        // while(true) {
+
+        // }
+
         // let askAgain = true;
         // do {
         //     index = prompt(name + " what cell?")       
@@ -97,8 +124,10 @@ const Game = (function () {
 
     const resetBoard = () => {
         for (let i = 0; i < board.length; i++) {
-                board[i] = ''
+            board[i] = ''
+            cells[i].textContent = ''
         }
+        msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
     }
 
     const isBoardFilled = () => {
@@ -147,21 +176,21 @@ const Game = (function () {
     }
 
     // uncomment to run game
-    let contGame = true;
-    // while(contGame) {
-    updateBoard(player1)
-    // name = player1.name
-    // mark = player1.mark
+    // let contGame = true;
+    // // while(contGame) {
+    // updateBoard(player1)
+    // // name = player1.name
+    // // mark = player1.mark
 
-    contGame = winCheck()
-    if (contGame === 0) { return 0 }
+    // contGame = winCheck()
+    // if (contGame === 0) { return 0 }
 
-    updateBoard(player2)
-    // name = player2.name
-    // mark = player2.mark
+    // updateBoard(player2)
+    // // name = player2.name
+    // // mark = player2.mark
 
-    contGame = winCheck()
-    if (contGame === 0) { return 0 }
-    // }
-    return 0;
+    // contGame = winCheck()
+    // if (contGame === 0) { return 0 }
+    // // }
+    // return 0;
 })();
