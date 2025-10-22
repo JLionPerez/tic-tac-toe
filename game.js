@@ -5,10 +5,6 @@ const Game = (function () {
         '','',''
     ]
 
-    let mark = '1'
-    let msg = ''
-    let name = ''
-
     function createPlayer (name,mark) {
         return {
             name: name,
@@ -19,22 +15,49 @@ const Game = (function () {
     const player1 = createPlayer("Player 1","X")
     const player2 = createPlayer("Player 2","O")
 
-    // const gameboard = document.getElementsByClassName(".gameboard")
-    let askAgain = true;
+    const msgBoard = document.querySelector(".message-board")
+    msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 (X) will be starting this round."
+
     const cells = document.querySelectorAll(".cell");
+
+    let mark = player1.mark
+    let name = player1.name
+
     for (let i = 0; i < cells.length; i++) {
+        let askAgain = true;
         cells[i].addEventListener('click', () => {
+            // if (mark = 'O') {
+            //     name = player1.name
+            //     mark = player1.mark
+            //     msgBoard.textContent = name + "'s turn."
+            // }
+
             do {
                 if (board[i] === ''){
                     board[i] = mark
                     cells[i].textContent = board[i]
                     askAgain = false
                 } else {
-                    console.log("You cannot mark this cell.")
-                    msg = "You cannot mark this cell."
+                    msgBoard.textContent = "You cannot mark this cell."
                 }
             } while (askAgain)
+            
+            // if (mark = 'X') {
+            //     name = player2.name
+            //     mark = player2.mark
+            //     msgBoard.textContent = name + "'s turn."
+            // }
         })
+        // if (mark = 'X') {
+        //     name = player2.name
+        //     mark = player2.mark
+        //     msgBoard.textContent = name + "'s turn."
+        // }
+        // else if (mark = 'O') {
+        //     name = player1.name
+        //     mark = player1.mark
+        //     msgBoard.textContent = name + "'s turn."
+        // }
     }
 
     const Gameboard = (function () {
@@ -45,6 +68,8 @@ const Game = (function () {
         // let index;
         name = obj.name
         mark = obj.mark
+
+        msgBoard.textContent = name + "'s turn."
 
         // let askAgain = true;
         // do {
@@ -124,15 +149,19 @@ const Game = (function () {
     // uncomment to run game
     let contGame = true;
     // while(contGame) {
-    //     updateBoard(player1)
+    updateBoard(player1)
+    // name = player1.name
+    // mark = player1.mark
 
-    //     contGame = winCheck()
-    //     if (contGame === 0) { return 0 }
+    contGame = winCheck()
+    if (contGame === 0) { return 0 }
 
-    //     updateBoard(player2)
+    updateBoard(player2)
+    // name = player2.name
+    // mark = player2.mark
 
-    //     contGame = winCheck()
-    //     if (contGame === 0) { return 0 }
+    contGame = winCheck()
+    if (contGame === 0) { return 0 }
     // }
-    // return 0;
+    return 0;
 })();
