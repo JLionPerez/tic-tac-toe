@@ -28,6 +28,7 @@ const Game = (function () {
     for (let i = 0; i < cells.length; i++) {
         cells[i].addEventListener('click', () => {
             if (board[i] === '' && mark === '' && continueGame === true){
+                msgBoard.textContent = "Player 2's turn."
                 mark = player1.mark
                 name = player1.name
                 board[i] = mark
