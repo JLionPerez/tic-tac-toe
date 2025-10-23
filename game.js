@@ -57,16 +57,15 @@ const Game = (function () {
         })
     }
 
-    const resetBoard = () => {
+    const resetBtn = document.getElementById("reset_btn")
+    resetBtn.addEventListener('click', () => {
         for (let i = 0; i < board.length; i++) {
             board[i] = ''
             cells[i].textContent = ''
         }
         msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
-        mark = ''
-        name = ''
         continueGame = true
-    }
+    })
 
     const isBoardFilled = () => {
         let fillCount = 0;
