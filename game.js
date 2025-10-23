@@ -22,104 +22,39 @@ const Game = (function () {
 
     let mark = ''
     let name = ''
+    let continueGame = true;
 
     for (let i = 0; i < cells.length; i++) {
-        let askAgain = true;
-        let continueGame = true;
         cells[i].addEventListener('click', () => {
-            // if (mark = 'O') {
-            //     name = player1.name
-            //     mark = player1.mark
-            //     msgBoard.textContent = name + "'s turn."
-            // }
-
-            // do {
-            if (board[i] === '' && mark === ''){ //first turn
+            if (board[i] === '' && mark === '' && continueGame === true){
                 mark = player1.mark
                 name = player1.name
                 board[i] = mark
                 cells[i].textContent = board[i]
-                // askAgain = false
             }
 
-            else if (board[i] === '' && mark === 'X') {
+            else if (board[i] === '' && mark === 'X' && continueGame === true) {
                 mark = player2.mark
                 msgBoard.textContent = name + "'s turn."
                 name = player2.name
                 board[i] = mark
                 cells[i].textContent = board[i]
-                // askAgain = false
             }
 
-            else if (board[i] === '' && mark === 'O') {
+            else if (board[i] === '' && mark === 'O' && continueGame === true) {
                 mark = player1.mark
                 msgBoard.textContent = name + "'s turn."
                 name = player1.name
                 board[i] = mark
                 cells[i].textContent = board[i]
-                // askAgain = false
             }
 
-            else {
-                msgBoard.textContent = "You cannot mark this cell."
+            if (winCheck() === 0) {
+                mark = ''
+                name = ''
+                continueGame = false
             }
-            // } while (askAgain)
-            
-            // if (mark = 'X') {
-            //     name = player2.name
-            //     mark = player2.mark
-            //     msgBoard.textContent = name + "'s turn."
-            // }
         })
-        // if (mark = 'X') {
-        //     name = player2.name
-        //     mark = player2.mark
-        //     msgBoard.textContent = name + "'s turn."
-        // }
-        // else if (mark = 'O') {
-        //     name = player1.name
-        //     mark = player1.mark
-        //     msgBoard.textContent = name + "'s turn."
-        // }
-    }
-
-    const Gameboard = (function () {
-        console.log(board) //return updated board
-    })();
-
-    const updateBoard = (obj) => { 
-        // let index;
-        name = obj.name
-        mark = obj.mark
-
-        msgBoard.textContent = name + "'s turn."
-
-        // while(true) {
-
-        // }
-
-        // let askAgain = true;
-        // do {
-        //     index = prompt(name + " what cell?")       
-        //     if (board[index] === '' && index >= 0 && index <= 8){
-        //         board[index] = mark
-        //         askAgain = false
-        //     } else {
-        //         console.log("You cannot mark this cell.")
-        //     }
-        // } while (askAgain)
-
-        // let askAgain = true;
-        // do {
-        //     // index = prompt(name + " what cell?")       
-        //     if (board[index] === ''){
-        //         board[index] = mark
-        //         askAgain = false
-        //     } else {
-        //         console.log("You cannot mark this cell.")
-        //     }
-        // } while (askAgain)
-
     }
 
     const resetBoard = () => {
@@ -128,6 +63,9 @@ const Game = (function () {
             cells[i].textContent = ''
         }
         msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
+        mark = ''
+        name = ''
+        continueGame = true
     }
 
     const isBoardFilled = () => {
@@ -152,7 +90,7 @@ const Game = (function () {
             (board[2] === 'X' && board[5] === 'X' && board[8] === 'X') ||
             (board[0] === 'X' && board[4] === 'X' && board[8] === 'X') ||
             (board[2] === 'X' && board[4] === 'X' && board[6] === 'X')) {
-            console.log("Player 1 wins!")
+            msgBoard.textContent = "Player 1 wins! If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
 
@@ -164,33 +102,14 @@ const Game = (function () {
             (board[2] === 'O' && board[5] === 'O' && board[8] === 'O') ||
             (board[0] === 'O' && board[4] === 'O' && board[8] === 'O') ||
             (board[2] === 'O' && board[4] === 'O' && board[6] === 'O')) {
-            console.log("Player 2 wins!")
+            msgBoard.textContent = "Player 2 wins! If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
 
         else if (isBoardFilled()) {
-            console.log("It's a draw.")
+            msgBoard.textContent = "It's a draw! If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
         return 1;
     }
-
-    // uncomment to run game
-    // let contGame = true;
-    // // while(contGame) {
-    // updateBoard(player1)
-    // // name = player1.name
-    // // mark = player1.mark
-
-    // contGame = winCheck()
-    // if (contGame === 0) { return 0 }
-
-    // updateBoard(player2)
-    // // name = player2.name
-    // // mark = player2.mark
-
-    // contGame = winCheck()
-    // if (contGame === 0) { return 0 }
-    // // }
-    // return 0;
 })();
