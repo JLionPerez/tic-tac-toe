@@ -16,7 +16,8 @@ const Game = (function () {
     const player2 = createPlayer("Player 2","O")
 
     const msgBoard = document.querySelector(".message-board")
-    msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
+    msgBoard.textContent = "Welcome to Tic Tac Toe!\r\n"
+    msgBoard.textContent += "Player 1 will be starting this round."
 
     const cells = document.querySelectorAll(".cell");
 
@@ -63,7 +64,8 @@ const Game = (function () {
             board[i] = ''
             cells[i].textContent = ''
         }
-        msgBoard.textContent = "Welcome to Tic Tac Toe! Player 1 will be starting this round."
+        msgBoard.textContent = "Welcome to Tic Tac Toe!\r\n"
+        msgBoard.textContent += "Player 1 will be starting this round."
         continueGame = true
     })
 
@@ -89,7 +91,8 @@ const Game = (function () {
             (board[2] === 'X' && board[5] === 'X' && board[8] === 'X') ||
             (board[0] === 'X' && board[4] === 'X' && board[8] === 'X') ||
             (board[2] === 'X' && board[4] === 'X' && board[6] === 'X')) {
-            msgBoard.textContent = "Player 1 wins! If you would like to play again please press the 'Reset Game' button."
+            msgBoard.textContent = "Player 1 wins!\r\n"
+            msgBoard.textContent += "If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
 
@@ -101,12 +104,14 @@ const Game = (function () {
             (board[2] === 'O' && board[5] === 'O' && board[8] === 'O') ||
             (board[0] === 'O' && board[4] === 'O' && board[8] === 'O') ||
             (board[2] === 'O' && board[4] === 'O' && board[6] === 'O')) {
-            msgBoard.textContent = "Player 2 wins! If you would like to play again please press the 'Reset Game' button."
+            msgBoard.textContent = "Player 2 wins!\r\n"
+            msgBoard.textContent += "If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
 
         else if (isBoardFilled()) {
-            msgBoard.textContent = "It's a draw! If you would like to play again please press the 'Reset Game' button."
+            msgBoard.textContent = "It's a draw!\r\n"
+            msgBoard.textContent += "If you would like to play again please press the 'Reset Game' button."
             return 0;
         }
         return 1;
