@@ -2,7 +2,7 @@
 
 **Live Demo:** https://jlionperez.github.io/tic-tac-toe/
 
-A fully functional Tic Tac Toe browser game built with JavaScript, HTML, and CSS. Assignment from The Odin Project Full Stack Course.
+A fully functional Tic Tac Toe browser game built with JavaScript, HTML, and CSS.
 
 ## :pencil: Features
 
@@ -18,7 +18,7 @@ A fully functional Tic Tac Toe browser game built with JavaScript, HTML, and CSS
 - HTML5
 - CSS3
 
-## :memo: Concepts Applied
+## :book: Concepts Applied
 
 - IIFE module pattern to encapsulate game state and logic
 - Factory function to create Player objects
