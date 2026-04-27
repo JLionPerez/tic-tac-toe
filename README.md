@@ -34,3 +34,9 @@ A fully functional Tic Tac Toe browser game built with JavaScript, HTML, and CSS
 ```cd tic-tac-toe```
 
 3. Open the ```index.html``` file in your browser.
+
+## :rocket: Future Improvements
+
+- Add Playwright test suites for CI/CD
+- Add a viewing of the leaderboard
+- Add a backend to save the scores of players
